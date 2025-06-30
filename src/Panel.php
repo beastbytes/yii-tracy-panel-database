@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace BeastBytes\Yii\Tracy\Panel\Database;
 
 use BeastBytes\Yii\Tracy\Panel\ServiceCollectorPanel;
+use BeastBytes\Yii\Tracy\ProxyContainer;
 use BeastBytes\Yii\Tracy\ViewTrait;
 use Yiisoft\Db\Connection\ConnectionInterface;
-use Yiisoft\Db\Debug\DatabaseCollector;
 
 final class Panel extends ServiceCollectorPanel
 {
     use ViewTrait;
+
+    private const BINARY_COLUMN = 'binary';
 
     private const COLOUR_NO_QUERIES = '#404040';
     private const COLOUR_QUERIES = '#5d0ec0';
@@ -37,6 +39,7 @@ ICON;
 
     private const TITLE = 'Database';
 
+
     protected function panelParameters(): array
     {
         $panelParameters = $this
@@ -46,14 +49,19 @@ ICON;
 
         $connection = $this->container->get(ProxyContainer::BYPASS . ConnectionInterface::class);
         $panelParameters['dsn'] = $connection->getDriver()->getDsn();
-        
-        $schema = $connection->getSchema();
-        $tableSchemas = $schema->getTableSchemas();
 
-        //@todo parse param values for binary columns
+        $this->tableSchemas = $connection
+            ->getSchema()
+            ->getTableSchemas()
+        ;
 
-
-
+        foreach ($panelParameters['queries'] as &$query) {
+            foreach ($query['params'] as $param => $value) {
+                if ($this->isBinary($param, $query['sql'])) {
+                    $query['params'][$param] = 'HEX2BIN(' . bin2hex($value) . ')';
+                }
+            }
+        }
 
         return $panelParameters;
     }
@@ -75,12 +83,35 @@ ICON;
     {
         return $this
             ->collector
-            ->getSummary()['db']
+            ->getSummary()
         ;
     }
 
     protected function tabTitle(): string
     {
         return self::TITLE;
+    }
+
+    private function isBinary(string $param, string $sql): bool
+    {
+        $matches = [];
+        if (preg_match(sprintf('|\s((.?\w+.?\.)?.?\w+.?)=.?%s|', $param), $sql, $matches) === 1) {
+            [$tableAlias, $columnName] = explode('.', $matches[1]);
+
+            preg_match(sprintf('|.?(\w+).?\s.?%s.?\s|', $tableAlias), $sql, $matches);
+            $tableName = $matches[1];
+
+            foreach ($this->tableSchemas as $tableSchema) {
+                if ($tableSchema->getName() === $tableName) {
+                    foreach ($tableSchema->getColumns() as $column) {
+                        if ($column->getName() === $columnName) {
+                            return $column->getType() === self::BINARY_COLUMN;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
