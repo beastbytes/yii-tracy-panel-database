@@ -1,0 +1,46 @@
+{
+  "name": "beastbytes/yii-tracy-panel-database",
+  "description": "Database panel for Yii Tracy",
+  "keywords": [
+    "yii",
+    "Tracy",
+    "debugger",
+    "database"
+  ],
+  "type": "library",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "BSD-3-Clause",
+  "require": {
+    "php": "^8.1",
+    "ext-pdo": "*",
+    "beastbytes/yii-tracy": "dev-main",
+    "yiisoft/db": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "vimeo/psalm": "^5.0",
+    "yiisoft/di": "^1.0",
+    "yiisoft/dummy-provider": "^1.0",
+    "yiisoft/test-support": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "BeastBytes\\Yii\\Tracy\\Panel\\Database\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BeastBytes\\Yii\\Tracy\\Panel\\Database\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "config-plugin-options": {
+      "source-directory": "config"
+    },
+    "config-plugin": {
+      "di-providers-web": "di-providers-web.php",
+      "params-web": "params-web.php"
+    }
+  }
+}
