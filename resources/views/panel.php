@@ -1,8 +1,9 @@
 <?php
 
-use BeastBytes\Yii\Tracy\Helper;
+use BeastBytes\Yii\Tracy\Panel\Database\Helper;
 
 /**
+ * @var string $dsn
  * @var array $queries
  * @psalm-var array{
  *  position: int,
@@ -69,7 +70,7 @@ use BeastBytes\Yii\Tracy\Helper;
                 <td><?= Helper::highlight($query['sql']) ?></td>
                 <td>
                     <?php foreach ($query['params'] as $param => $value): ?>
-                        <div><?= "$param&nbsp;$value" ?></div>
+                        <div><?= "$param&nbsp;=&nbsp;$value" ?></div>
                     <?php endforeach; ?>
                 </td>
                 <td class="yt_text-r"><?= $query['rowsNumber'] ?></td>
