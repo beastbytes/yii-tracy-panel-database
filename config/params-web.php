@@ -15,8 +15,9 @@ return [
                 'class' => DatabasePanel::class,
                 '__construct()' => [
                     Reference::to(DatabaseCollector::class),
-                    ConnectionInterface::class,
-                    Reference::to(ConnectionInterfaceProxy::class),
+                    [
+                        ConnectionInterface::class => Reference::to(ConnectionInterfaceProxy::class),
+                    ],
                 ],
             ],
         ],
