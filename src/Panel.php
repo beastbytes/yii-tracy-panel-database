@@ -68,7 +68,7 @@ ICON;
 
     protected function panelTitle(): string
     {
-        return $this->getName();
+        return self::TITLE;
     }
 
     protected function tabIcon(array $parameters): string
