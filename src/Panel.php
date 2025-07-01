@@ -41,6 +41,7 @@ ICON;
 
     private const TITLE = 'Database';
 
+    private array $tableSchemas = [];
 
     protected function panelParameters(): array
     {
