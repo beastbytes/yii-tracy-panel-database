@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace BeastBytes\Yii\Tracy\Panel\Database;
 
-use BeastBytes\Yii\Tracy\Panel\ServiceCollectorPanel;
+use BeastBytes\Yii\Tracy\Panel\CollectorPanelTrait;
+use BeastBytes\Yii\Tracy\Panel\ProxyCollectorPanel;
 use BeastBytes\Yii\Tracy\ProxyContainer;
 use BeastBytes\Yii\Tracy\ViewTrait;
 use Yiisoft\Db\Connection\ConnectionInterface;
 
-final class Panel extends ServiceCollectorPanel
+final class Panel extends ProxyCollectorPanel
 {
+    use CollectorPanelTrait;
     use ViewTrait;
 
     private const BINARY_COLUMN = 'binary';
@@ -42,10 +44,7 @@ ICON;
 
     protected function panelParameters(): array
     {
-        $panelParameters = $this
-            ->collector
-            ->getCollected()
-        ;
+        $panelParameters = $this->getCollected();
 
         $connection = $this->container->get(ProxyContainer::BYPASS . ConnectionInterface::class);
         $panelParameters['dsn'] = $connection->getDriver()->getDsn();
@@ -68,7 +67,7 @@ ICON;
 
     protected function panelTitle(): string
     {
-        return self::TITLE;
+        return $this->getName();
     }
 
     protected function tabIcon(array $parameters): string
@@ -81,10 +80,7 @@ ICON;
 
     protected function tabParameters(): array
     {
-        return $this
-            ->collector
-            ->getSummary()
-        ;
+        return $this->getSummary();
     }
 
     protected function tabTitle(): string
