@@ -10,7 +10,7 @@ use Yiisoft\Definitions\Reference;
 
 return [
     'beastbytes/yii-tracy' => [
-        'panels' => [
+        'panelConfig' => [
             'database' => [
                 'class' => DatabasePanel::class,
                 '__construct()' => [
