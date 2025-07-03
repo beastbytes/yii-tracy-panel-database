@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "261d121dab37ea81fcda2d9587c4dd1a",
+    "content-hash": "86bbdacbe6a52dc479a9794eb23022fa",
     "packages": [
         {
             "name": "beastbytes/yii-tracy",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/beastbytes/yii-tracy.git",
-                "reference": "8f6056e16932cf046df2205e31ce3baff42cb873"
+                "reference": "c2094356f3090ede6ac2c3d1127f6b7b46ecf983"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beastbytes/yii-tracy/zipball/8f6056e16932cf046df2205e31ce3baff42cb873",
-                "reference": "8f6056e16932cf046df2205e31ce3baff42cb873",
+                "url": "https://api.github.com/repos/beastbytes/yii-tracy/zipball/c2094356f3090ede6ac2c3d1127f6b7b46ecf983",
+                "reference": "c2094356f3090ede6ac2c3d1127f6b7b46ecf983",
                 "shasum": ""
             },
             "require": {
@@ -43,7 +43,8 @@
                 "config-plugin": {
                     "di-web": "di-web.php",
                     "events-web": "events-web.php",
-                    "params-web": "params-web.php"
+                    "params-web": "params-web.php",
+                    "di-providers-web": "di-providers-web.php"
                 },
                 "config-plugin-options": {
                     "source-directory": "config"
@@ -68,7 +69,7 @@
                 "issues": "https://github.com/beastbytes/yii-tracy/issues",
                 "source": "https://github.com/beastbytes/yii-tracy/tree/main"
             },
-            "time": "2025-07-01T21:14:25+00:00"
+            "time": "2025-07-03T11:06:49+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
