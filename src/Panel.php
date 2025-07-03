@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BeastBytes\Yii\Tracy\Panel\Database;
 
-use BeastBytes\Yii\Tracy\Panel\CollectorPanelTrait;
 use BeastBytes\Yii\Tracy\Panel\ProxyCollectorPanel;
 use BeastBytes\Yii\Tracy\ProxyContainer;
 use BeastBytes\Yii\Tracy\ViewTrait;
@@ -12,7 +11,6 @@ use Yiisoft\Db\Connection\ConnectionInterface;
 
 final class Panel extends ProxyCollectorPanel
 {
-    use CollectorPanelTrait;
     use ViewTrait;
 
     private const BINARY_COLUMN = 'binary';
