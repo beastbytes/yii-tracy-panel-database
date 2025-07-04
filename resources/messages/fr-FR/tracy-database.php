@@ -8,7 +8,7 @@ return [
     'database.heading.rows' => 'Lignes',
     'database.heading.time' => 'Temps',
     'database.no-queries' => 'Aucune question',
-    'database.queries' => '{total, plural, =1{Abfrage} other{Abfragen}}: {total, number}',
+    'database.queries' => '{total, number} {total, plural, =1{Abfrage} other{Abfragen}}',
     'database.title.panel' => 'Base de données',
     'database.title.tab' => 'Base de données',
 ];

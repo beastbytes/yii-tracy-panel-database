@@ -8,7 +8,7 @@ return [
     'database.heading.rows' => 'Ряды',
     'database.heading.time' => 'Время',
     'database.no-queries' => 'Нет запросов',
-    'database.queries' => '{total, plural, =1{Abfrage} other{Abfragen}}: {total, number}',
+    'database.queries' => '{total, number} {total, plural, =1{Abfrage} other{Abfragen}}',
     'database.title.panel' => 'База данных',
     'database.title.tab' => 'База данных',
 ];
