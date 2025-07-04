@@ -28,9 +28,10 @@ use BeastBytes\Yii\Tracy\Panel\Database\Helper;
  * @var TranslatorInterface $translator
  */
 
+use BeastBytes\Yii\Tracy\Panel\Database\Panel;
 use Yiisoft\Translator\TranslatorInterface;
 
-$translator = $translator->withDefaultCategory('tracy-database');
+$translator = $translator->withDefaultCategory(Panel::MESSAGE_CATEGORY);
 ?>
 
 <h2>DSN: <?= $dsn ?></h2>
