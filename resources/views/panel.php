@@ -25,42 +25,28 @@ use BeastBytes\Yii\Tracy\Panel\Database\Helper;
  *       }
  *  }
  * } $queries
- * @var array $transactions
- * @psalm-var array{
- *  id: string,
- *  position: int,
- *  status: string,
- *  line: int,
- *  level: int,
- *  actions: list{
- *      array{
- *          action: string,
- *          time: float,
- *      },
- *      array{
- *          action: string,
- *          line: int,
- *          time: float,
- *      }
- *  }
- * } $transactions
+ * @var TranslatorInterface $translator
  */
+
+use Yiisoft\Translator\TranslatorInterface;
+
+$translator = $translator->withDefaultCategory('tracy-database');
 ?>
 
 <h2>DSN: <?= $dsn ?></h2>
     
-<h2>Queries</h2>
+<h2><?= $translator->translate('database.heading.queries') ?></h2>
 <?php if (empty($queries)): ?>
-    <div>No queries</div>
+    <div><?= $translator->translate('database.heading.queries') ?></div>
 <?php else: ?>
     <table>
         <thead>
             <tr>
                 <th>#</th>
                 <th>SQL</th>
-                <th>Parameters</th>
-                <th>Rows</th>
-                <th>Time</th>
+                <th><?= $translator->translate('database.heading.parameters') ?></th>
+                <th><?= $translator->translate('database.heading.ross') ?></th>
+                <th><?= $translator->translate('database.heading.time') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -84,37 +70,6 @@ use BeastBytes\Yii\Tracy\Panel\Database\Helper;
                 ?></td>
             </tr>
         <?php endforeach; ?>    
-        </tbody>
-    </table>
-<?php endif; ?>
-
-<h2>Transactions</h2>
-<?php if (empty($transactions)): ?>
-    <div>No transactions</div>
-<?php else: ?>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Level</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($transactions as $transaction): ?>
-            <tr>
-                <td class='yt_text-r'><?= $transaction['position'] ?></td>
-                <td class='yt_text-r'><?= $transaction['level'] ?></td>
-                <td class='yt_text-r'><?=
-                    round(
-                        ($transaction['actions'][1]['time'] - $transaction['actions'][0]['time']) * 1000,
-                        3,
-                        PHP_ROUND_HALF_EVEN
-                    )
-                    . '&nbsp;ms'
-                ?></td>
-            </tr>
-        <?php endforeach; ?>
         </tbody>
     </table>
 <?php endif; ?>

@@ -5,15 +5,9 @@
  *     error: int,
  *     total: int
  * } $queries
- * @var array $transactions
- * @psalm-var array{
- *      error: int,
- *      total: int
- * } $transactions
+ * @var TranslatorInterface $translator
  */
 
-if (empty($queries)) {
-    echo '0 queries';
-} else {
-    echo sprintf('%d %s', $queries['total'], $queries['total'] === 1 ? 'query' : 'queries');
-}
+use Yiisoft\Translator\TranslatorInterface;
+
+echo $translator->translate('database.queries', ['total' => $queries['total']]);

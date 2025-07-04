@@ -37,8 +37,6 @@ final class Panel extends ProxyCollectorPanel
 </svg>
 ICON;
 
-    private const TITLE = 'Database';
-
     private array $tableSchemas = [];
 
     protected function panelParameters(): array
@@ -64,9 +62,12 @@ ICON;
         return $panelParameters;
     }
 
-    protected function panelTitle(): string
+    protected function panelTitle(): array
     {
-        return self::TITLE;
+        return [
+            'id' => 'database.title.panel',
+            'category' => 'tracy-database',
+        ];
     }
 
     protected function tabIcon(array $parameters): string
@@ -82,9 +83,12 @@ ICON;
         return $this->getSummary();
     }
 
-    protected function tabTitle(): string
+    protected function tabTitle(): array
     {
-        return self::TITLE;
+        return [
+            'id' => 'database.title.tab',
+            'category' => 'tracy-database',
+        ];
     }
 
     private function isBinary(string $param, string $sql): bool
