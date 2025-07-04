@@ -9,4 +9,6 @@ return [
     'database.heading.time' => 'Temps',
     'database.no-queries' => 'Aucune question',
     'database.queries' => '{total, plural, =1{Abfrage} other{Abfragen}}: {total, number}',
+    'database.title.panel' => 'Base de données',
+    'database.title.tab' => 'Base de données',
 ];

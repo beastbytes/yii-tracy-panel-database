@@ -9,4 +9,6 @@ return [
     'database.heading.time' => 'Time',
     'database.no-queries' => 'No queries',
     'database.queries' => '{total, plural, =1{Query} other{Queries}}: {total, number}',
+    'database.title.panel' => 'Database',
+    'database.title.tab' => 'Database',
 ];
