@@ -38,7 +38,7 @@ $translator = $translator->withDefaultCategory(Panel::MESSAGE_CATEGORY);
     
 <h2><?= $translator->translate('database.heading.queries') ?></h2>
 <?php if (empty($queries)): ?>
-    <div><?= $translator->translate('database.heading.queries') ?></div>
+    <div><?= $translator->translate('database.no-queries') ?></div>
 <?php else: ?>
     <table>
         <thead>
