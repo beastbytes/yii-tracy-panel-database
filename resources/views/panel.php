@@ -46,7 +46,7 @@ $translator = $translator->withDefaultCategory(Panel::MESSAGE_CATEGORY);
                 <th>#</th>
                 <th>SQL</th>
                 <th><?= $translator->translate('database.heading.parameters') ?></th>
-                <th><?= $translator->translate('database.heading.ross') ?></th>
+                <th><?= $translator->translate('database.heading.rows') ?></th>
                 <th><?= $translator->translate('database.heading.time') ?></th>
             </tr>
         </thead>
