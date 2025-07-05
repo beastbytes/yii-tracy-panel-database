@@ -68,7 +68,7 @@ ICON;
     {
         return [
             'id' => 'database.title.panel',
-            'category' => 'tracy-database',
+            'category' => self::MESSAGE_CATEGORY,
         ];
     }
 
@@ -89,7 +89,7 @@ ICON;
     {
         return [
             'id' => 'database.title.tab',
-            'category' => 'tracy-database',
+            'category' => self::MESSAGE_CATEGORY,
         ];
     }
 
