@@ -76,7 +76,7 @@ ICON;
     {
         return sprintf(
             self::ICON,
-            $parameters['queries'] ? self::COLOUR_QUERIES : self::COLOUR_NO_QUERIES,
+            $parameters['queries']['total'] === 0 ? self::COLOUR_NO_QUERIES : self::COLOUR_QUERIES,
         );
     }
 
@@ -96,10 +96,16 @@ ICON;
     private function isBinary(string $param, string $sql): bool
     {
         $matches = [];
-        if (preg_match(sprintf('|\s((.?\w+.?\.)?.?\w+.?)=.?%s|', $param), $sql, $matches) === 1) {
-            [$tableAlias, $columnName] = explode('.', $matches[1]);
+        if (preg_match(sprintf('|\s((\W?\w+\W?\.)?\W?\w+\W?)=.?%s|', $param), $sql, $matches) === 1) {
+            if (str_contains($matches[1], '.')) { // table alias
+                [$tableAlias, $columnName] = explode('.', $matches[1]);
+                preg_match(sprintf('|\W?(\w+)\W?\s.?%s.?\s|', $tableAlias), $sql, $matches);
+            } else { // not a table alias so get the table name from SQL FROM clause
+                preg_match('|(\w+)|', $matches[1], $matches);
+                $columnName = $matches[1];
+                preg_match('|FROM\s\W?(\w+)\W?\s|', $sql, $matches);
+            }
 
-            preg_match(sprintf('|.?(\w+).?\s.?%s.?\s|', $tableAlias), $sql, $matches);
             $tableName = $matches[1];
 
             foreach ($this->tableSchemas as $tableSchema) {
