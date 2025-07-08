@@ -35,7 +35,6 @@ $translator = $translator->withDefaultCategory(Panel::MESSAGE_CATEGORY);
 ?>
 
 <h2>DSN: <?= $dsn ?></h2>
-    
 <h2><?= $translator->translate('database.heading.queries') ?></h2>
 <?php if (empty($queries)): ?>
     <div><?= $translator->translate('database.no-queries') ?></div>
@@ -51,26 +50,23 @@ $translator = $translator->withDefaultCategory(Panel::MESSAGE_CATEGORY);
             </tr>
         </thead>
         <tbody>
-        <?php foreach ($queries as $query): ?>
+            <?php foreach ($queries as $query): ?>
             <tr>
-                <td class="yt_text-r"><?= $query['position'] ?></td>
+                <td><?= $query['position'] ?></td>
                 <td><?= Helper::highlight($query['sql']) ?></td>
-                <td>
+                <td><ul>
                     <?php foreach ($query['params'] as $param => $value): ?>
-                        <div><?= "$param&nbsp;=&nbsp;$value" ?></div>
+                    <li><?= "$param&nbsp;=&nbsp;$value" ?></li>
                     <?php endforeach; ?>
-                </td>
-                <td class="yt_text-r"><?= $query['rowsNumber'] ?></td>
-                <td class="yt_text-r"><?=
-                    round(
-                        ($query['actions'][1]['time'] - $query['actions'][0]['time']) * 1000,
-                        3,
-                        PHP_ROUND_HALF_EVEN
-                    )
-                    . '&nbsp;ms'
-                ?></td>
+                </ul></td>
+                <td><?= $query['rowsNumber'] ?></td>
+                <td><?= round(
+                    ($query['actions'][1]['time'] - $query['actions'][0]['time']) * 1000,
+                    3,
+                    PHP_ROUND_HALF_EVEN
+                ) . '&nbsp;ms'?></td>
             </tr>
-        <?php endforeach; ?>    
+            <?php endforeach; ?>
         </tbody>
     </table>
 <?php endif; ?>
