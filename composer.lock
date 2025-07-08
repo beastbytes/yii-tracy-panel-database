@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "711a36c9dd5116cbed5c0a0f04196ae6",
+    "content-hash": "3a9887eb98734b04b36604945fe08e03",
     "packages": [
         {
             "name": "beastbytes/yii-tracy",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/beastbytes/yii-tracy.git",
-                "reference": "f365323db2ec55f2557e6318a7b25a2928bc877e"
+                "reference": "80404fb4e7b269014b59881e598f0381963832c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beastbytes/yii-tracy/zipball/f365323db2ec55f2557e6318a7b25a2928bc877e",
-                "reference": "f365323db2ec55f2557e6318a7b25a2928bc877e",
+                "url": "https://api.github.com/repos/beastbytes/yii-tracy/zipball/80404fb4e7b269014b59881e598f0381963832c3",
+                "reference": "80404fb4e7b269014b59881e598f0381963832c3",
                 "shasum": ""
             },
             "require": {
@@ -36,7 +36,8 @@
                 "vimeo/psalm": "^5.0",
                 "yiisoft/di": "^1.0",
                 "yiisoft/dummy-provider": "^1.0",
-                "yiisoft/test-support": "^3.0"
+                "yiisoft/test-support": "^3.0",
+                "yiisoft/translator-message-php": "^1.0"
             },
             "default-branch": true,
             "type": "library",
@@ -70,7 +71,7 @@
                 "issues": "https://github.com/beastbytes/yii-tracy/issues",
                 "source": "https://github.com/beastbytes/yii-tracy/tree/main"
             },
-            "time": "2025-07-04T15:15:58+00:00"
+            "time": "2025-07-06T19:25:30+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -3763,16 +3764,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.2",
+            "version": "1.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "d25e62e636b0a9b01e3bdebb7823b474876dd829"
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/d25e62e636b0a9b01e3bdebb7823b474876dd829",
-                "reference": "d25e62e636b0a9b01e3bdebb7823b474876dd829",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/faed855a7b5f4d4637717c2b3863e277116beb36",
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36",
                 "shasum": ""
             },
             "require": {
@@ -3811,7 +3812,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.2"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.3"
             },
             "funding": [
                 {
@@ -3819,7 +3820,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-07-04T14:07:32+00:00"
+            "time": "2025-07-05T12:25:42+00:00"
         },
         {
             "name": "netresearch/jsonmapper",
@@ -5967,6 +5968,158 @@
             "time": "2022-06-03T18:03:27+00:00"
         },
         {
+            "name": "yiisoft/cache-file",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/cache-file.git",
+                "reference": "484cde38f64504aeda89065339f9a313bc0691aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/cache-file/zipball/484cde38f64504aeda89065339f9a313bc0691aa",
+                "reference": "484cde38f64504aeda89065339f9a313bc0691aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "psr/simple-cache": "^2.0|^3.0"
+            },
+            "provide": {
+                "psr/simple-cache-implementation": "1.0.0"
+            },
+            "require-dev": {
+                "maglnet/composer-require-checker": "^4.4",
+                "php-mock/php-mock-phpunit": "^2.6",
+                "phpunit/phpunit": "^9.5",
+                "rector/rector": "^2.0",
+                "roave/infection-static-analysis-plugin": "^1.16",
+                "spatie/phpunit-watcher": "^1.23",
+                "vimeo/psalm": "^4.30|^5.21",
+                "yiisoft/aliases": "^3.0",
+                "yiisoft/di": "^1.2"
+            },
+            "type": "library",
+            "extra": {
+                "config-plugin": {
+                    "di": "di.php",
+                    "params": "params.php"
+                },
+                "config-plugin-options": {
+                    "source-directory": "config"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Cache\\File\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii Caching Library - File Handler",
+            "homepage": "https://www.yiiframework.com/",
+            "keywords": [
+                "cache",
+                "file",
+                "framework",
+                "psr-16",
+                "yii"
+            ],
+            "support": {
+                "chat": "https://t.me/yii3en",
+                "forum": "https://www.yiiframework.com/forum/",
+                "irc": "ircs://irc.libera.chat:6697/yii",
+                "issues": "https://github.com/yiisoft/cache-file/issues?state=open",
+                "source": "https://github.com/yiisoft/cache-file",
+                "wiki": "https://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "opencollective"
+                }
+            ],
+            "time": "2025-01-13T20:33:48+00:00"
+        },
+        {
+            "name": "yiisoft/db-sqlite",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/db-sqlite.git",
+                "reference": "525868bb46ffea8d4d04e5e658d06e8b0a85a4d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/db-sqlite/zipball/525868bb46ffea8d4d04e5e658d06e8b0a85a4d8",
+                "reference": "525868bb46ffea8d4d04e5e658d06e8b0a85a4d8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-pdo": "*",
+                "php": "8.1 - 8.4",
+                "yiisoft/db": "dev-master"
+            },
+            "require-dev": {
+                "maglnet/composer-require-checker": "^4.7.1",
+                "phpunit/phpunit": "^10.5.45",
+                "rector/rector": "^2.0.10",
+                "roave/infection-static-analysis-plugin": "^1.35",
+                "spatie/phpunit-watcher": "^1.24",
+                "vimeo/psalm": "^5.26.1 || ^6.8.8",
+                "yiisoft/aliases": "^2.0",
+                "yiisoft/cache-file": "^3.2",
+                "yiisoft/var-dumper": "^1.7"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Db\\Sqlite\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "SQLite driver for Yii Database",
+            "homepage": "https://www.yiiframework.com/",
+            "keywords": [
+                "database",
+                "dbal",
+                "query-builder",
+                "sql",
+                "sqlite",
+                "yii"
+            ],
+            "support": {
+                "chat": "https://t.me/yii3en",
+                "forum": "https://www.yiiframework.com/forum/",
+                "irc": "ircs://irc.libera.chat:6697/yii",
+                "issues": "https://github.com/yiisoft/db-sqlite/issues?state=open",
+                "source": "https://github.com/yiisoft/db-sqlite",
+                "wiki": "https://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "opencollective"
+                }
+            ],
+            "time": "2025-06-27T08:16:52+00:00"
+        },
+        {
             "name": "yiisoft/dummy-provider",
             "version": "1.0.1",
             "source": {
@@ -6090,7 +6243,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "beastbytes/yii-tracy": 20,
-        "yiisoft/db": 20
+        "yiisoft/db": 20,
+        "yiisoft/db-sqlite": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
