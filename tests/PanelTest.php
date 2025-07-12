@@ -164,16 +164,12 @@ TAB;
         $this->assertSame(sprintf(self::TAB, $tab[0], $tab[1]), $this->panel->getTab());
 
         $this->assertStringMatchesFormat(
-            preg_replace(
-                '|>\s+<|',
-                '><',
-                sprintf(
-                    self::PANEL,
-                    self::$dsn,
-                    $this->parsePanel($panel)
-                )
-            ),
-            preg_replace('|>\s+<|', '><', $this->panel->getPanel())
+            $this->stripWhitespace(sprintf(
+                self::PANEL,
+                self::$dsn,
+                $this->parsePanel($panel)
+            )),
+            $this->stripWhitespace($this->panel->getPanel())
         );
     }
 
@@ -292,7 +288,7 @@ ROW,
                 [
                     '{i}' => $i,
                     '{query}' => Helper::highlight($query[0]),
-                    '{parameters}' => "<ul>\n" . $this->parseParameters($query[1]) . '</ul>',
+                    '{parameters}' => $this->parameters2String($query[1]),
                     '{rows}' => $query[2],
                 ]
             );
@@ -300,16 +296,19 @@ ROW,
         return sprintf(self::QUERIES, $tbody);
     }
 
-    private function parseParameters(array $parameters): string
+    private function parameters2String(array $parameters): string
     {
         $result = [];
         foreach ($parameters as $param => $value) {
-            $result[] = sprintf(
-                '%s&nbsp;=&nbsp;%s',
-                $param,
-                $value,
-            );
+            $result[] = sprintf('%s&nbsp;=&nbsp;%s', $param, $value);
         }
-        return '<li>' . implode("</li>\n<li>", $result) . "</li>\n";
+        return empty($result)
+            ? ''
+            : '<ul><li>' . implode("</li><li>", $result) . "</li></ul>";
+    }
+
+    private function stripWhitespace(string $string): string
+    {
+        return preg_replace('/>\s+</', '><', $string);
     }
 }

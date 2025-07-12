@@ -54,11 +54,15 @@ $translator = $translator->withDefaultCategory(Panel::MESSAGE_CATEGORY);
             <tr>
                 <td><?= $query['position'] ?></td>
                 <td><?= Helper::highlight($query['sql']) ?></td>
-                <td><ul>
-                    <?php foreach ($query['params'] as $param => $value): ?>
-                    <li><?= "$param&nbsp;=&nbsp;$value" ?></li>
-                    <?php endforeach; ?>
-                </ul></td>
+                <td>
+                    <?php if (!empty($query['params'])): ?>
+                    <ul>
+                        <?php foreach ($query['params'] as $param => $value): ?>
+                        <li><?= "$param&nbsp;=&nbsp;$value" ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; ?>
+                </td>
                 <td><?= $query['rowsNumber'] ?></td>
                 <td><?= round(
                     ($query['actions'][1]['time'] - $query['actions'][0]['time']) * 1000,
