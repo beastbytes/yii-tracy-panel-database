@@ -173,20 +173,20 @@ TAB;
         );
     }
 
-    public function queryProvider(): array
+    public static function queryProvider(): array
     {
         return [
             'No queries' => [
-                '',
-                [],
-                [self::COLOUR_NO_QUERIES, '0 Queries'],
-                [],
+                'queries' => '',
+                'parameters' => [],
+                'tab' => [self::COLOUR_NO_QUERIES, '0 Queries'],
+                'panel' => [],
             ],
             'Single query' => [
-                'SELECT * FROM {{%user}} WHERE [[id]] = :id',
-                [':id' => 1],
-                [self::COLOUR_QUERIES, '1 Query'],
-                [
+                'queries' => 'SELECT * FROM {{%user}} WHERE [[id]] = :id',
+                'parameters' => [':id' => 1],
+                'tab' => [self::COLOUR_QUERIES, '1 Query'],
+                'panel' => [
                     [
                         'SELECT * FROM "user" WHERE "id" = :id',
                         [':id' => 1],
@@ -195,18 +195,18 @@ TAB;
                 ],
             ],
             'Multiple queries' => [
-                [
+                'queries' => [
                     'SELECT * FROM {{%user}} WHERE [[id]] = :id',
                     'SELECT * FROM {{%user}} WHERE [[id]] < :id',
                     'SELECT * FROM {{%user}} WHERE [[id]] > :id',
                 ],
-                [
+                'parameters' => [
                     [':id' => 1],
                     [':id' => 3],
                     [':id' => 2],
                 ],
-                [self::COLOUR_QUERIES, '3 Queries'],
-                [
+                'tab' => [self::COLOUR_QUERIES, '3 Queries'],
+                'panel' => [
                     [
                         'SELECT * FROM "user" WHERE "id" = :id',
                         [':id' => 1],
@@ -247,7 +247,7 @@ TAB;
         $connection->open();
 
         if (is_string($queries)) {
-            if (is_string(array_keys($parameters)[0])) {
+            if (!empty($parameters) && is_string(array_keys($parameters)[0])) {
                 $connection->createCommand($queries, $parameters)->queryAll();
             } else {
                 foreach ($parameters as $params) {
@@ -256,7 +256,7 @@ TAB;
             }
         } else {
             foreach ($queries as $n => $query) {
-                if (is_string(array_keys($parameters)[0])) {
+                if (!empty($parameters) && is_string(array_keys($parameters)[0])) {
                     $connection->createCommand($query, $parameters)->queryAll();
                 } else {
                     $connection->createCommand($query, $parameters[$n])->queryAll();
