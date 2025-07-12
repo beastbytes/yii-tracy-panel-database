@@ -162,19 +162,16 @@ TAB;
     {
         $this->executeQueries($queries, $parameters);
         $this->assertSame(sprintf(self::TAB, $tab[0], $tab[1]), $this->panel->getTab());
-        $this->assertMatchesRegularExpression(
-            str_replace(
-                ['*', '.'],
-                ['\*', '\.'],
-                '|' . preg_replace(
-                    '|>\s+<|',
-                    '><',
-                    sprintf(
-                        self::PANEL,
-                        self::$dsn,
-                        $this->parsePanel($panel)
-                    )
-                ) . '|'
+
+        $this->assertStringMatchesFormat(
+            preg_replace(
+                '|>\s+<|',
+                '><',
+                sprintf(
+                    self::PANEL,
+                    self::$dsn,
+                    $this->parsePanel($panel)
+                )
             ),
             preg_replace('|>\s+<|', '><', $this->panel->getPanel())
         );
@@ -282,21 +279,22 @@ TAB;
 
         $tbody = '';
         foreach ($panel as $i => $query) {
-            // the "." in the float is escaped later
-            $tbody .= sprintf(
+            $tbody .= strtr(
                 <<<ROW
             <tr>
-                <td>%s</td>
-                <td>%s</td>
-                <td>%s</td>
-                <td>%s</td>
-                <td>\d+.\d{1,3}&nbsp;ms</td>
+                <td>{i}</td>
+                <td>{query}</td>
+                <td>{parameters}</td>
+                <td>{rows}</td>
+                <td>%f&nbsp;ms</td>
             </tr>
 ROW,
-                $i,
-                Helper::highlight($query[0]),
-                "<ul>\n" . $this->parseParameters($query[1]) . "</ul>",
-                $query[2],
+                [
+                    '{i}' => $i,
+                    '{query}' => Helper::highlight($query[0]),
+                    '{parameters}' => "<ul>\n" . $this->parseParameters($query[1]) . '</ul>',
+                    '{rows}' => $query[2],
+                ]
             );
         }
         return sprintf(self::QUERIES, $tbody);
