@@ -20,7 +20,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0",
-    "vimeo/psalm": "^5.0",
+    "vimeo/psalm": "^6.0",
     "yiisoft/db-sqlite": "dev-master",
     "yiisoft/di": "^1.0",
     "yiisoft/dummy-provider": "^1.0",
