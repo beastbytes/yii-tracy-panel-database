@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/beastbytes/yii-tracy.git",
-                "reference": "0cee8cd3b29248fb8dd4c47070eb067cb4088b0e"
+                "reference": "2f8b3255a1f16e8a9f1b3190777dd27b8d38ee1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/beastbytes/yii-tracy/zipball/0cee8cd3b29248fb8dd4c47070eb067cb4088b0e",
-                "reference": "0cee8cd3b29248fb8dd4c47070eb067cb4088b0e",
+                "url": "https://api.github.com/repos/beastbytes/yii-tracy/zipball/2f8b3255a1f16e8a9f1b3190777dd27b8d38ee1b",
+                "reference": "2f8b3255a1f16e8a9f1b3190777dd27b8d38ee1b",
                 "shasum": ""
             },
             "require": {
@@ -71,7 +71,7 @@
                 "issues": "https://github.com/beastbytes/yii-tracy/issues",
                 "source": "https://github.com/beastbytes/yii-tracy/tree/main"
             },
-            "time": "2025-09-05T15:11:03+00:00"
+            "time": "2025-10-15T20:39:44+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1695,12 +1695,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/db.git",
-                "reference": "0d64ed64a98ac20b6410f82fb22d1d1715767909"
+                "reference": "4528ac7bf99c7ef8f8d8f5886ddafb34fbccaddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/db/zipball/0d64ed64a98ac20b6410f82fb22d1d1715767909",
-                "reference": "0d64ed64a98ac20b6410f82fb22d1d1715767909",
+                "url": "https://api.github.com/repos/yiisoft/db/zipball/4528ac7bf99c7ef8f8d8f5886ddafb34fbccaddf",
+                "reference": "4528ac7bf99c7ef8f8d8f5886ddafb34fbccaddf",
                 "shasum": ""
             },
             "require": {
@@ -1773,7 +1773,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2025-10-01T01:17:11+00:00"
+            "time": "2025-10-15T11:47:24+00:00"
         },
         {
             "name": "yiisoft/definitions",
