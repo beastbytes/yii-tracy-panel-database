@@ -2,9 +2,9 @@
 
 namespace BeastBytes\Yii\Tracy\Panel\Database\Tests;
 
+use BeastBytes\Yii\Tracy\ContainerProxy;
 use BeastBytes\Yii\Tracy\Panel\Database\Helper;
 use BeastBytes\Yii\Tracy\Panel\Database\Panel;
-use BeastBytes\Yii\Tracy\ProxyContainer;
 use PHPUnit\Framework\Attributes\After;
 use PHPUnit\Framework\Attributes\Before;
 use PHPUnit\Framework\Attributes\BeforeClass;
@@ -85,7 +85,7 @@ TAB;
 
     private static ?ContainerInterface $container = null;
     private static Dsn $dsn;
-    private static ?ContainerInterface $proxyContainer = null;
+    private static ?ContainerInterface $containerProxy = null;
 
     private ?Panel $panel = null;
 
@@ -141,8 +141,8 @@ TAB;
                 ],
             ));
 
-            self::$proxyContainer = new ProxyContainer(self::$container);
-            $this->panel = $this->panel->withContainer(self::$proxyContainer);
+            self::$containerProxy = new ContainerProxy(self::$container);
+            $this->panel = $this->panel->withContainer(self::$containerProxy);
             $this->panel->startup();
         }
     }
@@ -243,7 +243,7 @@ TAB;
      */
     private function executeQueries(array|string $queries, array $parameters): void
     {
-        $connection = self::$proxyContainer->get(ConnectionInterface::class);
+        $connection = self::$containerProxy->get(ConnectionInterface::class);
         $connection->open();
 
         if (is_string($queries)) {
